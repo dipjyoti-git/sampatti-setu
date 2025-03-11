@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Literacy & Budget Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Financial Literacy & Budget Management</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tracking">Expense Tracking</a></li>
+                <li><a href="#budgeting">Budget Planning</a></li>
+                <li><a href="#investment">Investment Advice</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+    <section id="home">
+        <h2>Welcome to Your Financial Guide</h2>
+        <p>Manage your finances smartly with AI-powered insights and expert recommendations.</p>
+    </section>
+
+    <section id="tracking">
+      <h2>Expense Tracker</h2>
+    <input type="number" id="expenseAmount" placeholder="Enter amount">
+    <br>
+    <button onclick="addExpense()">Add Expense</button>
+    <h3>Total Expenses: $<span id="totalExpense">0.00</span></h3>
+    <p id="warningMessage" style="color: red; font-weight: bold; display: none;">⚠ Warning: Expenses exceeded $10,000!</p>
+
+    <!-- Smart Budget Planning Button -->
+    <a href="index2.html"><button>Expense Analytics</button></a>
+
+    <script>
+        let totalExpense = 0;
+        const WARNING_LIMIT = 10000;
+
+        async function addExpense() {
+            let expenseInput = document.getElementById("expenseAmount");
+            let expenseValue = parseFloat(expenseInput.value);
+            let warningMessage = document.getElementById("warningMessage");
+            
+            if (!isNaN(expenseValue) && expenseValue > 0) {
+                try {
+                    let response = await fetch("http://localhost:5000/add-expense", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ amount: expenseValue })
+                    });
+
+                    let result = await response.json();
+                    if (response.ok) {
+                        totalExpense += expenseValue;
+                        document.getElementById("totalExpense").textContent = totalExpense.toFixed(2);
+                        expenseInput.value = "";
+
+                        if (totalExpense > WARNING_LIMIT) {
+                            warningMessage.style.display = "block";
+                        } else {
+                            warningMessage.style.display = "none";
+                        }
+                    } else {
+                        alert(result.message);
+                    }
+                } catch (error) {
+                    console.error("Error adding expense:", error);
+                    alert("Server error. Please try again.");
+                }
+            } else {
+                alert("Please enter a valid expense amount.");
+            }
+        }
+
+        function goToBudgetPage() {
+            window.location.href = "budget.html";
+        }
+    </script>
+    </section>
+
+    <section id="budgeting">
+        <h2>Smart Budget Planning</h2>
+        <p>Dynamic budgeting algorithms help you save effectively and set expense limits.</p>
+        <a href="index3.html">
+          <button class="budget-btn"> 50/30/20 Budget Planning</button>
+        </a>
+        <br>
+        <a href="index4.html">
+        <button class="budget-btn"> Zero-Based Budgeting</button>
+        </a>
+        <br>
+        <a href="index5.html">
+        <button class="budget-btn"> Envelope Budgeting</button>
+        </a>
+    </section>
+
+    <section id="investment">
+        <h2>Investment Advisory</h2>
+        <p>Get personalized investment strategies based on your financial goals.</p>
+    </section>
+
+    <section id="resources">
+        <h2>Interactive Educational Resources</h2>
+        <!-- Add this where you want the Recommended Videos section to appear -->
+<section id="recommended-videos">
+    <h2>Recommended Videos</h2>
+    <div class="video-container" id="videoContainer">
+      <!-- YouTube videos will be dynamically inserted here -->
+    </div>
+  </section>
+  
+
+    </section>
+    <footer>
+        <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+{
+"symbols": [
+  {
+    "proName": "FOREXCOM:SPXUSD",
+    "title": "S&P 500 Index"
+  },
+  {
+    "proName": "FOREXCOM:NSXUSD",
+    "title": "US 100 Cash CFD"
+  },
+  {
+    "proName": "FX_IDC:EURUSD",
+    "title": "EUR to USD"
+  },
+  {
+    "proName": "BITSTAMP:BTCUSD",
+    "title": "Bitcoin"
+  },
+  {
+    "proName": "BITSTAMP:ETHUSD",
+    "title": "Ethereum"
+  }
+],
+"showSymbolLogo": true,
+"isTransparent": false,
+"displayMode": "adaptive",
+"colorTheme": "dark",
+"locale": "en"
+}
+
+ </body> 
+<script>
+     const videoIds = [
+    'C_UeYBBogPA', 
+    '5EvT3Yge6S8',
+    'MQpbxF_RngI',
+    'ACpQo1a_RBk',
+    '6Sd-C-B7FjM'
+  ];
+
+  const videoContainer = document.getElementById('videoContainer');
+
+  // Dynamically create and append video iframes to the container
+  videoIds.forEach(id => {
+    const videoDiv = document.createElement('div');
+    videoDiv.className = 'video-item';
+    videoDiv.innerHTML = `<iframe width="300" height="200" src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>`;
+    videoContainer.appendChild(videoDiv);
+  });
+</script>
+
+</footer>
+    <footer>
+        <p>&copy; 2025 Financial Literacy Platform | Secure & Private</p>
+    </footer>
+
+
+</body>
+</html>

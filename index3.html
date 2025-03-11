@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50/30/20 Budget Planner</title>
+    <link rel="stylesheet" href="styles4.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>💰 50/30/20 Budget Planner</h2>
+        <p>Enter your monthly income to see how to allocate it wisely.</p>
+        
+        <input type="number" id="budgetInput" placeholder="Enter your total budget">
+        <button onclick="calculateBudget()">Calculate</button>
+        
+        <div id="result" class="hidden">
+            <h3>Budget Breakdown:</h3>
+            <p>🛒 Needs (50%): <span id="needsAmount">$0.00</span></p>
+            <p>🎉 Wants (30%): <span id="wantsAmount">$0.00</span></p>
+            <p>💰 Savings (20%): <span id="savingsAmount">$0.00</span></p>
+        </div>
+
+        <a href="index.html"><button class="back-btn">⬅ Back to Expense Tracker</button></a>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

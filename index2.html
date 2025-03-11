@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Tracker</title>
+    <link rel="stylesheet" href="styles3.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Personal Expense Tracker</h2>
+
+        <form id="expense-form">
+            <label for="category">Category:</label>
+            <select id="category" required>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Entertainment">Entertainment</option>
+            </select>
+
+            <label for="amount">Amount ($):</label>
+            <input type="number" id="amount" min="1" required>
+
+            <button type="submit">Add Expense</button>
+        </form>
+        <h4> Link UPI to automatically update your live expense</h4>
+        <div class="upi-container">
+            <div class="upi-buttons">
+                <a href="https://pay.google.com" class="upi-button google-pay">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Pay">
+                    <span>Google Pay</span>
+                </a>
+                <a href="https://paytm.me/" class="upi-button paytm">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Paytm_logo.png" alt="Paytm">
+                    <span>Paytm</span>
+                </a>
+                <a href="https://phonepe.com/" class="upi-button phonepe">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/PhonePe_Logo.svg" alt="PhonePe">
+                    <span>PhonePe</span>
+                </a>
+            </div>
+        </div>
+        <div class="date-bar">
+            <span id="current-date"></span>
+        </div>
+        <p>Today's Expense chart:</p>
+        <canvas id="dailyExpenseChart"></canvas>
+    </div>
+    <div class="graph-container">
+        <h2>Monthly Expenses </h2>
+        <canvas id="monthlyExpenseChart"></canvas>
+    </div>
+
+    <script src="tracker.js"></script>
+</body>
+</html>
